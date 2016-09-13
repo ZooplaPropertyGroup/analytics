@@ -14,8 +14,8 @@ FROM
         INNER JOIN agent_branches_nopii AS b ON b.branch_id = e.branch_id
         INNER JOIN postal_area_outcodes AS pac ON pac.outcode = b.outcode 
     WHERE 
-        lead_sent_date >= '2016-01-01' 
-        AND lead_sent_date < '2016-08-01'
+        lead_sent_date >= '2016-02-01' 
+        AND lead_sent_date < '2016-09-01'
     GROUP BY 1
     UNION ALL
     SELECT 
@@ -27,8 +27,8 @@ FROM
         INNER JOIN agent_branches_nopii AS b ON b.branch_id = l.branch_id
         INNER JOIN postal_area_outcodes AS pac ON pac.outcode = b.outcode 
     WHERE 
-        call_start >= '2016-01-01' 
-        AND call_start < '2016-08-01'
+        call_start >= '2016-02-01' 
+        AND call_start < '2016-09-01'
     GROUP BY 1
 )
 GROUP BY 1
