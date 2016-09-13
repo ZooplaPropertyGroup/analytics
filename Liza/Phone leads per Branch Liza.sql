@@ -9,7 +9,7 @@ SELECT
   count(distinct id) as total_phone_leads
 FROM agent_phone_leads_nopii as l
 WHERE 
-  call_start>='2015-07-01' 
+  call_start>='2016-07-01' 
   AND branch_id in 
     ( SELECT c.branch_id 
       FROM 
@@ -29,7 +29,7 @@ SELECT
   COUNT(DISTINCT l.id) AS total_phone_leads
 FROM agent_phone_leads_nopii AS l
 WHERE 
-  l.call_start >= '2015-07-01' 
+  l.call_start >= '2016-07-01' 
   AND l.branch_id IN 
     ( SELECT c.branch_id 
       FROM 
