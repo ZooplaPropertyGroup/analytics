@@ -2,7 +2,7 @@
 
 UPDATE staging.fullfeed
 SET platform = 'Mobile'
-WHERE platform in ('mob','mobi','mobil','mobile','m','mo');
+WHERE platform in ('m','mo','mob','mobi','mobil','mobile');
 
 UPDATE staging.fullfeed
 SET platform = 'App'
@@ -10,7 +10,7 @@ WHERE platform in ('app');
 
 UPDATE staging.fullfeed
 SET platform = 'Desktop'
-WHERE platform in ('desktop','deskto','desk');
+WHERE platform in ('d','desk','deskto','desktop');
 
 UPDATE staging.fullfeed
 SET platform = 'Native App'
