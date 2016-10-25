@@ -168,7 +168,7 @@ case
   when wl.device_deviceCategory = 'tablet' then 'Tablet'
 	when wl.device_deviceCategory = 'desktop' then 'Desktop'
 	when wl.device_deviceCategory = 'mobile' then 'Smartphone'
-	else 'unknown' 
+	else 'Unknown' 
   end as Device,
 wl.device_browser as Browser,
 wl.device_operatingSystem as "Operating system",
@@ -264,7 +264,7 @@ case
   when wl.device_deviceCategory = 'tablet' then 'Tablet'
 	when wl.device_deviceCategory = 'desktop' then 'Desktop'
 	when wl.device_deviceCategory = 'mobile' then 'Smartphone'
-	else 'unknown' 
+	else 'Unknown' 
   end as Device,
 wl.device_browser as Browser,
 wl.device_operatingSystem as "Operating system",
@@ -360,7 +360,7 @@ case
   when wl.device_deviceCategory = 'tablet' then 'Tablet'
 	when wl.device_deviceCategory = 'desktop' then 'Desktop'
 	when wl.device_deviceCategory = 'mobile' then 'Smartphone'
-	else 'unknown' 
+	else 'Unknown' 
   end as Device,
 wl.device_browser as Browser,
 wl.device_operatingSystem as "Operating system",
@@ -721,7 +721,7 @@ select
 			OR (LOWER(g."Web enquiry list") IN ('aaa_contact','fa_results','fa_contact') AND LOWER(g."Web enquiry type") = 'lessor')
 			OR (LOWER(g."Web enquiry list") IN ('aaa_contact','fa_results','fa_contact') AND LOWER(g."Web enquiry type") = 'vendor')
 			OR (LOWER(g."Web enquiry list") IN ('aaa_contact','fa_results','fa_contact','fa_brochure') AND LOWER(g."Web enquiry type") = '(not set)') then 'UK Residential'
-		  else 'na' 
+		  else 'Unknown' 
 		  end as Market,
 
 		--Page path dim
