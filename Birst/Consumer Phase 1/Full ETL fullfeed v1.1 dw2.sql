@@ -678,12 +678,7 @@ select
 		  WHEN g.profile_id = 61296626 AND p.platform IS NULL AND g.hostname LIKE 'm.%' THEN 'Mobile'
 		  ELSE 'App'
 		  END ,'na') as DimSystemKey,
-		isnull(CASE 
-            WHEN g."Device category" = 'desktop' THEN 'Desktop'
-            WHEN g."Device category" = 'mobile' THEN 'Mobile'
-            WHEN g."Device category" = 'tablet' THEN 'Tablet'
-            ELSE g."Device category"
-            END,'Unknown') as "Device category",
+		isnull(g."Device category",'Unknown') as "Device category",
 		g."Operating system",
 		g.Browser,
 		g."Native App",
