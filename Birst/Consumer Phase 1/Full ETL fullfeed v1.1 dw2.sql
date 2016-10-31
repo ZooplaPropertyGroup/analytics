@@ -669,7 +669,7 @@ select
 		g.Hostname,
 
 		----Device dim
-		isnull(g.Device,'na') as Device,
+		isnull(g.Device,'Unknown') as Device,
 
 		----System dim
 		isnull(g."Device category",'na')+'_'+isnull(g."Operating system",'na')+'_'+isnull(g.Browser,'na')+'_'+isnull(g."Native App",'na')+'_'+isnull(CASE
@@ -678,7 +678,7 @@ select
 		  WHEN g.profile_id = 61296626 AND p.platform IS NULL AND g.hostname LIKE 'm.%' THEN 'Mobile'
 		  ELSE 'App'
 		  END ,'na') as DimSystemKey,
-		g."Device category",
+		isnull(g."Device category",'Unknown') as "Device category"
 		g."Operating system",
 		g.Browser,
 		g."Native App",
