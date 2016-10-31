@@ -177,6 +177,14 @@ UPDATE staging.fullfeed
 SET markettype = 'Unknown', market = 'Unknown'
 WHERE market = 'na';
 
+UPDATE staging.fullfeed
+SET markettype = 'Unknown'
+WHERE markettype IS NULL;
+
+UPDATE staging.fullfeed
+SET markettype = 'Unknown'
+WHERE markettype = 'unknown';
+
 
 select markettype, market
 from staging.fullfeed
