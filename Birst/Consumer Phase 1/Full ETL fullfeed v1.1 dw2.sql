@@ -4,25 +4,25 @@
 TRUNCATE TABLE staging.appwithlead;
 INSERT INTO staging.appwithlead
 SELECT * FROM source.ga_leads_native_app
-WHERE date >= '20161205' ;
+WHERE date >= '20161212' ;
 
 -- ga_leads_no_native_app
 TRUNCATE TABLE staging.webwithlead;
 INSERT INTO staging.webwithlead
 SELECT * FROM source.ga_leads_no_native_app
-WHERE date >= '20161205' ;
+WHERE date >= '20161212' ;
 
 ---ga_sessions_no_lead    
 TRUNCATE TABLE staging.webandappnolead;
 INSERT INTO staging.webandappnolead
 SELECT * FROM source.ga_sessions_no_lead 
-WHERE date >= '20161205' ;
+WHERE date >= '20161212' ;
 
 -- ga_visit_platform     
 TRUNCATE TABLE staging.visit_platform;
 INSERT INTO staging.visit_platform
 SELECT * FROM source.ga_visit_platform 
-WHERE date >= '20161205' ;
+WHERE date >= '20161212' ;
 
 
 --***************************************
@@ -580,7 +580,7 @@ case
 isnull(UPPER(sl.listing_country_code),'n/a') as "Listing country"
 from source.source_listing_agent_leads_nopii sl
 where (sl.sent='Y' OR sl.sent='N')
-and (sl.sent_date between  '12/05/2016' and '12/12/2016')
+and (sl.sent_date between  '12/12/2016' and '12/19/2016')
 
 union all
 
@@ -614,7 +614,7 @@ inner join source.agent_leads_sent alsent
 	on al.lead_id=alsent.lead_id
 --lead type not required
 where al.type_of_lead<> 'temptme'
-and (alsent.sent_date between  '12/05/2016' and '12/12/2016')
+and (alsent.sent_date between  '12/12/2016' and '12/19/2016')
 union all
 
 --Phone leads
@@ -633,7 +633,7 @@ cast(pl.call_start as date) as "Lead date",
 'n/a' as "Listing location",
 'n/a' as "Listing country"
 from source.agent_phone_leads_nopii pl
-Where pl.call_start between '12/05/2016' and '12/12/2016'
+Where pl.call_start between '12/12/2016' and '12/19/2016'
 ) d;
 
 
