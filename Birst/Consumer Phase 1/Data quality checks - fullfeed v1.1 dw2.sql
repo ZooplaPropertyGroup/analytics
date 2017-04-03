@@ -20,6 +20,8 @@ UPDATE staging.fullfeed
 SET platform = 'Unknown'
 WHERE platform = ' ';
 
+UPDATE staging.fullfeed
+
 
 
 UPDATE staging.fullfeed
