@@ -21,6 +21,8 @@ SET platform = 'Unknown'
 WHERE platform = ' ';
 
 UPDATE staging.fullfeed
+SET platform = 'Responsive'
+WHERE platform = 'responsive';
 
 
 
