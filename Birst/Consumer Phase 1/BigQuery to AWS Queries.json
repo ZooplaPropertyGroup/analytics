@@ -1,0 +1,110 @@
+{
+    "area_sponsorship_daily": {
+        "bigquery": {
+            "template": "select date, hits.page.hostname, hits.eventInfo.eventAction, hits.eventInfo.eventLabel, count(*) events FROM [61296626.:bq_table_name] WHERE hits.eventInfo.eventCategory='Area Sponsorship - MPU' and hits.type='EVENT' group by 1,2,3,4 "
+        },
+        "redshift_table": "ga_area_sponsorship",
+        "redshift": "dw2"
+    },
+    "area_sponsorship_daily_reload": {
+        "bigquery": {
+            "template": [
+                "SELECT date, hits.page.hostname, hits.eventInfo.eventAction, hits.eventInfo.eventLabel, count(*) events ",
+                "FROM TABLE_DATE_RANGE([61296626.:bq_table_name],TIMESTAMP(':start'),TIMESTAMP(':end')) ",
+                "WHERE hits.eventInfo.eventCategory='Area Sponsorship - MPU' and hits.type='EVENT' ",
+                "GROUP BY 1,2,3,4 "
+            ]
+        },
+        "redshift_table": "ga_area_sponsorship",
+        "redshift": "dw2"
+    },
+    
+    "ga_leads_native_app": {
+        "bigquery": {
+            "template": [
+                "SELECT     61296626 AS profile_id, 'Zoopla Property Group' AS profile_description, [date],",
+                "           device.browser, device.deviceCategory,device.operatingSystem,fullVisitorId,geoNetwork.continent,",
+                "           geoNetwork.country,geoNetwork.subContinent,hits.hitNumber,hits.time,hits.hour,hits.minute,",
+                "           hits.page.hostname,hits.page.pagePath,hits.item.productCategory,hits.item.productName,",
+                "           hits.transaction.transactionId,trafficSource.campaign,trafficSource.medium,trafficSource.source,",
+                "           trafficSource.referralPath,visitId,visitNumber,visitStartTime,totals.hits,totals.pageviews,",
+                "           totals.timeOnSite,totals.newVisits,totals.UniqueScreenViews",
+                "FROM       [61296626.:bq_table_name]",
+                "WHERE      hits.transaction.transactionId is not null",
+                "AND        hits.appInfo.appName='Zoopla'",
+                "AND        hits.item.productName is not null",
+                "GROUP BY   profile_id,profile_description,[date],device.browser,device.deviceCategory,device.operatingSystem,",
+                "           fullVisitorId,geoNetwork.continent,geoNetwork.country,geoNetwork.subContinent,hits.hitNumber,hits.time,",
+                "           hits.hour,hits.minute,hits.page.hostname,hits.page.pagePath,hits.item.productCategory,hits.item.productName,",
+                "           hits.transaction.transactionId,trafficSource.campaign,trafficSource.medium,trafficSource.source,",
+                "           trafficSource.referralPath,visitId,visitNumber,visitStartTime,totals.hits,totals.pageviews,totals.timeOnSite,",
+                "           totals.newVisits,totals.UniqueScreenViews"
+            ]
+        },
+        "redshift_table": "ga_leads_native_app",
+        "redshift": "dw2"
+    },
+    
+    "ga_leads_no_native_app": {
+        "bigquery": {
+            "template": [
+                "SELECT     61296626 AS profile_id, 'Zoopla Property Group' AS profile_description, [date],",
+                "           device.browser, device.deviceCategory, device.operatingSystem, fullVisitorId,",
+                "           geoNetwork.continent, geoNetwork.country, geoNetwork.subContinent,",
+                "           hits.hitNumber, hits.time, hits.hour, hits.minute, hits.page.hostname, hits.page.pagePath,",
+                "           hits.product.v2ProductCategory, hits.product.v2ProductName, hits.transaction.transactionId,",
+                "           trafficSource.campaign, trafficSource.medium, trafficSource.source, trafficSource.referralPath,",
+                "           visitId, visitNumber, visitStartTime,",
+                "           totals.hits, totals.pageviews, totals.timeOnSite, totals.newVisits, totals.UniqueScreenViews ",
+                "FROM       [61296626.:bq_table_name] ",
+                "WHERE      hits.transaction.transactionId is not null ",
+                "AND        hits.appInfo.appName is null ",
+                "GROUP BY   profile_id, profile_description, [date], ",
+                "           device.browser, device.deviceCategory, device.operatingSystem, fullVisitorId,",
+                "           geoNetwork.continent, geoNetwork.country, geoNetwork.subContinent,",
+                "           hits.hitNumber, hits.time, hits.hour, hits.minute, hits.page.hostname, hits.page.pagePath,",
+                "           hits.product.v2ProductCategory, hits.product.v2ProductName, hits.transaction.transactionId,",
+                "           trafficSource.campaign, trafficSource.medium, trafficSource.source, trafficSource.referralPath,",
+                "           visitId, visitNumber, visitStartTime,",
+                "           totals.hits, totals.pageviews, totals.timeOnSite, totals.newVisits, totals.UniqueScreenViews"
+            ]
+        },
+        "redshift_table": "ga_leads_no_native_app",
+        "redshift": "dw2"
+    },
+    
+    "ga_sessions_no_lead": {
+        "bigquery": {
+            "template": [
+                "SELECT     61296626 AS profile_id, 'Zoopla Property Group - All site data' AS profile_description, [date],",
+                "           device.browser,device.deviceCategory,device.operatingSystem,fullVisitorId,geoNetwork.continent,geoNetwork.country,",
+                "           geoNetwork.subContinent,hits.appInfo.appName,hits.page.hostname,trafficSource.campaign,trafficSource.medium,trafficSource.source,",
+                "           trafficSource.referralPath,visitId,visitNumber,visitStartTime,totals.hits,totals.pageviews,totals.timeOnSite,totals.newVisits,",
+                "           totals.UniqueScreenViews",
+                "FROM       [61296626.:bq_table_name]",
+                "WHERE      hits.transaction.transactionId is null",
+                "GROUP BY   profile_id, profile_description, [date],device.browser,device.deviceCategory,device.operatingSystem,fullVisitorId,",
+                "           geoNetwork.continent,geoNetwork.country,geoNetwork.subContinent,hits.appInfo.appName,hits.page.hostname,trafficSource.campaign,",
+                "           trafficSource.medium,trafficSource.source,trafficSource.referralPath,visitId,visitNumber,visitStartTime,totals.hits,totals.pageviews,",
+                "           totals.timeOnSite,totals.newVisits,totals.UniqueScreenViews"
+            ]
+        },
+        "redshift_table": "ga_sessions_no_lead",
+        "redshift": "dw2"
+    },
+    
+    "ga_visit_platform": {
+        "bigquery": {
+            "template": [
+                "SELECT     61296626 AS profile_id, 'Zoopla Property Group - All site data' AS profile_description, [date],",
+                "           fullVisitorId,visitId,customDimensions.value",
+                "FROM       [61296626.:bq_table_name],",
+                "WHERE      customDimensions.index=2",
+                "GROUP BY   profile_id, profile_description, [date],fullVisitorId,visitId,customDimensions.value"
+            ]
+        },
+        "redshift_table": "ga_visit_platform",
+        "redshift": "dw2"
+    }
+   
+}
